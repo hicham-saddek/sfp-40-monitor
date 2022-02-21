@@ -26,7 +26,7 @@ class Variable extends Model
     use TitleField, DescriptionField, EnableField;
 
     protected $fillable = [
-        'opc_ua_namespace_index', 'opc_ua_identifier', 'subscription_status',
+        'node_id', 'subscription_status',
     ];
 
     public function channel(): BelongsTo
