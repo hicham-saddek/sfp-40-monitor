@@ -30,8 +30,7 @@ class VariablesController extends Controller
         $data = $request->validate([
             'title' => ['required', 'string', 'min:5', 'max:191'],
             'description' => ['required', 'string'],
-            'opc_ua_namespace_index' => ['required', 'integer', 'min:0', 'max:256'],
-            'opc_ua_identifier' => ['required', 'integer', 'min:0', 'max:9999'],
+            'node_id' => ['required', 'string'],
             'subscriptions_status' => ['required', 'boolean'],
         ]);
         $variable = $channel->variables()->create($data);
@@ -55,8 +54,7 @@ class VariablesController extends Controller
         $data = $request->validate([
             'title' => ['nullable', 'string', 'min:5', 'max:191'],
             'description' => ['nullable', 'string'],
-            'opc_ua_namespace_index' => ['nullable', 'integer', 'min:0', 'max:256'],
-            'opc_ua_identifier' => ['nullable', 'integer', 'min:0', 'max:9999'],
+            'node_id' => ['nullable', 'string'],
             'subscriptions_status' => ['nullable', 'boolean'],
         ]);
         $data = collect($data)->whereNotNull()->toArray();

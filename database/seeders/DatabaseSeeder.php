@@ -34,8 +34,8 @@ class DatabaseSeeder extends Seeder
         });
         $this->call([
             ChannelSeeder::class,
-            VariableSeeder::class,
-            DataSeeder::class,
+//            VariableSeeder::class,
+//            DataSeeder::class,
         ]);
         $this->createSuperAdmin();
     }

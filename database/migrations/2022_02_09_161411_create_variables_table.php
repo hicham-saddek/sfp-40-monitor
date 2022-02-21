@@ -12,8 +12,7 @@ return new class extends Migration {
             $table->id();
             $table->string("title");
             $table->longText("description");
-            $table->integer("opc_ua_namespace_index");
-            $table->integer("opc_ua_identifier");
+            $table->string("node_id");
             $table->boolean("enable")->default(true);
             $table->foreignIdFor(Channel::class)->nullable()->constrained()->cascadeOnDelete();
             $table->boolean('subscription_status')->default(false);
