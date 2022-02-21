@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae1e6d4efa153690ac5dcd4fc4ab5f97",
+    "content-hash": "dd7e7d2923462e281652cd703edc59e7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1329,16 +1329,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.0.0",
+            "version": "v9.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "fbe7ed828819eadabb3cb9f95847a2ffe8846fd6"
+                "reference": "afeb58d019b203ecb1a1c4063a66a029ea6bea63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/fbe7ed828819eadabb3cb9f95847a2ffe8846fd6",
-                "reference": "fbe7ed828819eadabb3cb9f95847a2ffe8846fd6",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/afeb58d019b203ecb1a1c4063a66a029ea6bea63",
+                "reference": "afeb58d019b203ecb1a1c4063a66a029ea6bea63",
                 "shasum": ""
             },
             "require": {
@@ -1504,7 +1504,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-02-08T15:48:31+00:00"
+            "time": "2022-02-09T15:00:05+00:00"
         },
         {
             "name": "laravel/jetstream",
@@ -2093,6 +2093,128 @@
                 }
             ],
             "time": "2021-11-21T11:48:40+00:00"
+        },
+        {
+            "name": "milebits/eloquent-filters",
+            "version": "4.04",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/milebits/eloquent-filters.git",
+                "reference": "812d5877760c5635d3cf2e037e37c60056a69b76"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/milebits/eloquent-filters/zipball/812d5877760c5635d3cf2e037e37c60056a69b76",
+                "reference": "812d5877760c5635d3cf2e037e37c60056a69b76",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^6|^7|^8|^9",
+                "milebits/helpers": "^3",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "facade/ignition": "2.*",
+                "fakerphp/faker": "1.*",
+                "mockery/mockery": "1.*",
+                "nunomaduro/collision": "5.*",
+                "phpunit/phpunit": "9.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Milebits\\Eloquent\\Filters\\Providers\\EloquentFiltersServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Milebits\\Eloquent\\Filters\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Hicham SADDEK",
+                    "email": "h.saddek@serrahub.com",
+                    "homepage": "https://linkedin.com/in/hicham-saddek",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Milebits Systems",
+                    "email": "support@milebits.com",
+                    "homepage": "https://os.milebits.com",
+                    "role": "Project Manager"
+                }
+            ],
+            "description": "A Laravel PHP library that allows the user to filter the result of Eloquent Model query builders.",
+            "support": {
+                "email": "support@os.milebits.com",
+                "issues": "https://github.com/milebits/eloquent-filters/issues",
+                "source": "https://github.com/milebits/eloquent-filters/tree/4.04"
+            },
+            "time": "2022-02-10T14:13:03+00:00"
+        },
+        {
+            "name": "milebits/helpers",
+            "version": "3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/milebits/helpers.git",
+                "reference": "fde07763ae5c8f70a3d2280f785642072ffcfe14"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/milebits/helpers/zipball/fde07763ae5c8f70a3d2280f785642072ffcfe14",
+                "reference": "fde07763ae5c8f70a3d2280f785642072ffcfe14",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^6|^7|^8|^9",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.12",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Helpers/functions.php"
+                ],
+                "psr-4": {
+                    "Milebits\\Helpers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Hicham SADDEK",
+                    "email": "h.saddek@serrahub.com",
+                    "homepage": "https://linkedin.com/in/hicham-saddek",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Milebits Systems",
+                    "email": "support@milebits.com",
+                    "homepage": "https://os.milebits.com",
+                    "role": "Project Manager"
+                }
+            ],
+            "description": "A new laravel package including helper functions for every Milebits package.",
+            "support": {
+                "email": "support@os.milebits.com",
+                "issues": "https://github.com/milebits/helpers/issues",
+                "source": "https://github.com/milebits/helpers/tree/3.0.2"
+            },
+            "time": "2022-02-10T14:25:06+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -7679,16 +7801,16 @@
         },
         {
             "name": "sebastian/global-state",
-            "version": "5.0.3",
+            "version": "5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/global-state.git",
-                "reference": "23bd5951f7ff26f12d4e3242864df3e08dec4e49"
+                "reference": "19c519631c5a511b7ed0ad64a6713fdb3fd25fe4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/23bd5951f7ff26f12d4e3242864df3e08dec4e49",
-                "reference": "23bd5951f7ff26f12d4e3242864df3e08dec4e49",
+                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/19c519631c5a511b7ed0ad64a6713fdb3fd25fe4",
+                "reference": "19c519631c5a511b7ed0ad64a6713fdb3fd25fe4",
                 "shasum": ""
             },
             "require": {
@@ -7731,7 +7853,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/global-state/issues",
-                "source": "https://github.com/sebastianbergmann/global-state/tree/5.0.3"
+                "source": "https://github.com/sebastianbergmann/global-state/tree/5.0.4"
             },
             "funding": [
                 {
@@ -7739,7 +7861,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-06-11T13:31:12+00:00"
+            "time": "2022-02-10T07:01:19+00:00"
         },
         {
             "name": "sebastian/lines-of-code",
@@ -8336,16 +8458,16 @@
         },
         {
             "name": "spatie/laravel-ignition",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "68250225a9f83b086462c2af1b1139dfde48fbd2"
+                "reference": "ca49c7f74022de49910715e8f1ac5ce52123eb3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/68250225a9f83b086462c2af1b1139dfde48fbd2",
-                "reference": "68250225a9f83b086462c2af1b1139dfde48fbd2",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/ca49c7f74022de49910715e8f1ac5ce52123eb3e",
+                "reference": "ca49c7f74022de49910715e8f1ac5ce52123eb3e",
                 "shasum": ""
             },
             "require": {
@@ -8419,7 +8541,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-02-04T15:25:56+00:00"
+            "time": "2022-02-10T08:50:40+00:00"
         },
         {
             "name": "theseer/tokenizer",

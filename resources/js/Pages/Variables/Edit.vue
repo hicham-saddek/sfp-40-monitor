@@ -1,0 +1,111 @@
+<template>
+    <in-head title="Modifier une nouvelle variable"/>
+    <app-layout>
+        <template #header>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Modification d'une variable
+            </h2>
+        </template>
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                    <div
+                        class="p-6 sm:px-20 bg-white border-b border-gray-200 text-center flex justify-center flex-col">
+                        <div class="mt-8 text-2xl">Créer une nouvelle variable</div>
+                        <div class="mt-2 mb-8 text-sm text-gray-500">
+                            Une variable à monitorer, le titre et la description sont des attributs qui vont
+                            vous aider à identifier votre variable, elle représente un capteur ou un actionneur de votre
+                            système que vous souhaiter monitorer, l'index OPC_UA et le namespace OPC_UA représente votre
+                            capteur ou votre actionneur vous pouvez les collecter de la documentation de la plateforme
+                            disponible dans la documentation fournis avec la plateforme.
+                        </div>
+                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                <form @submit.prevent="submit">
+                                    <div class="rounded-md shadow-sm -space-y-px">
+                                        <div>
+                                            <label for="title" class="sr-only">Titre</label>
+                                            <input id="title" name="title" v-model="form.title" type="text"
+                                                   required=""
+                                                   class="appearance-none rounded-none rounded-t-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                   placeholder="Titre"/>
+                                        </div>
+                                        <div>
+                                            <label for="description" class="sr-only">Description</label>
+                                            <input id="description" name="description" v-model="form.description"
+                                                   type="text"
+                                                   required=""
+                                                   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                   placeholder="Description"/>
+                                        </div>
+                                        <div>
+                                            <label for="opc_ua_namespace_index" class="sr-only">OPC-UA Namespace
+                                                Index</label>
+                                            <input id="opc_ua_namespace_index" name="opc_ua_namespace_index"
+                                                   v-model="form.opc_ua_namespace_index" type="number"
+                                                   autocomplete="email"
+                                                   required=""
+                                                   class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                   placeholder="OPC-UA Namespace Index"/>
+                                        </div>
+                                        <div>
+                                            <label for="opc_ua_identifier" class="sr-only">OPC-UA Identifier</label>
+                                            <input id="opc_ua_identifier" name="opc_ua_identifier"
+                                                   v-model="form.opc_ua_identifier" type="number"
+                                                   required=""
+                                                   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                   placeholder="OPC-UA Identifier"/>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button type="submit" :class="{ 'opacity-25': form.processing }"
+                                                :disabled="form.processing"
+                                                class="mt-4 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            Enregister
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </app-layout>
+</template>
+
+<script>
+import {defineComponent} from "vue";
+import AppLayout from '@/Layouts/AppLayout';
+import {Head as InHead, Link as InLink} from "@inertiajs/inertia-vue3";
+
+export default defineComponent({
+    components: {AppLayout, InHead, InLink},
+    name: "Edit",
+    props: {
+        variable: Object,
+        channel: Object
+    },
+    data() {
+        return {
+            form: this.$inertia.form({
+                title: this.variable.title,
+                description: this.variable.description,
+                opc_ua_namespace_index: this.variable.opc_ua_namespace_index,
+                opc_ua_identifier: this.variable.opc_ua_identifier,
+            }),
+        };
+    },
+    methods: {
+        submit() {
+            this.form.patch(this.route('channels.variables.update', {channel: this.channel}), {
+                onFinish: () => this.form.reset(),
+            });
+        },
+    },
+});
+</script>
+
+<style scoped>
+
+</style>

@@ -1,16 +1,16 @@
 <template>
     <jet-action-section>
         <template #title>
-            Browser Sessions
+            Connexions des appareils
         </template>
 
         <template #description>
-            Manage and log out your active sessions on other browsers and devices.
+            Gérer et déconnecter vous de vos sessions actives dans vos autres appareils.
         </template>
 
         <template #content>
             <div class="max-w-xl text-sm text-gray-600">
-                If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.
+                Si besoin, vous pouvez vous déconnecter de vos autres appareils. Vos sessions actives sont lister ici, par contre ceci es juste pour un titre indicatif, si vous sentez que votre compte ou vos données sont pirater, changez votre mot de passe.
             </div>
 
             <!-- Other Browser Sessions -->
@@ -28,14 +28,14 @@
 
                     <div class="ml-3">
                         <div class="text-sm text-gray-600">
-                            {{ session.agent.platform ? session.agent.platform : 'Unknown' }} - {{ session.agent.browser ? session.agent.browser : 'Unknown' }}
+                            {{ session.agent.platform ? session.agent.platform : 'Inconnu' }} - {{ session.agent.browser ? session.agent.browser : 'Inconnu' }}
                         </div>
 
                         <div>
                             <div class="text-xs text-gray-500">
                                 {{ session.ip_address }},
 
-                                <span class="text-green-500 font-semibold" v-if="session.is_current_device">This device</span>
+                                <span class="text-green-500 font-semibold" v-if="session.is_current_device">Cet appareil</span>
                                 <span v-else>Last active {{ session.last_active }}</span>
                             </div>
                         </div>
@@ -45,22 +45,22 @@
 
             <div class="flex items-center mt-5">
                 <jet-button @click="confirmLogout">
-                    Log Out Other Browser Sessions
+                    Déconnecter les autres appareils
                 </jet-button>
 
                 <jet-action-message :on="form.recentlySuccessful" class="ml-3">
-                    Done.
+                    Fait.
                 </jet-action-message>
             </div>
 
             <!-- Log Out Other Devices Confirmation Modal -->
             <jet-dialog-modal :show="confirmingLogout" @close="closeModal">
                 <template #title>
-                    Log Out Other Browser Sessions
+                    Déconnecter les autres appareils
                 </template>
 
                 <template #content>
-                    Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.
+                    Merci de renseigner votre mot de passe si vous voulez vous déconnecter des autres appareils.
 
                     <div class="mt-4">
                         <jet-input type="password" class="mt-1 block w-3/4" placeholder="Password"
@@ -74,11 +74,11 @@
 
                 <template #footer>
                     <jet-secondary-button @click="closeModal">
-                        Cancel
+                        Annuler
                     </jet-secondary-button>
 
                     <jet-button class="ml-3" @click="logoutOtherBrowserSessions" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Log Out Other Browser Sessions
+                        Déconnexion
                     </jet-button>
                 </template>
             </jet-dialog-modal>

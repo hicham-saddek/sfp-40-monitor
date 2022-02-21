@@ -1,19 +1,19 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\ChannelsController;
+use App\Http\Controllers\DataController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::name('api.')->group(function () {
+    Route::name('channels.')->prefix('channels')->group(function () {
+        Route::get('/configurations/{channel:slug}', [ ChannelsController::class, 'configs' ])->name('configs');
+        Route::prefix('/{channel}')->group(function () {
+            Route::get('/', [ ChannelsController::class, 'show' ])->name('show');
+            Route::name('variables.')->prefix('variables')->group(function () {
+                Route::get('/watched', [ ChannelsController::class, 'watched' ])->name('watched');
+                Route::get('/unwatched', [ ChannelsController::class, 'unwatched' ])->name('unwatched');
+                Route::post('/{variable}/data', [ DataController::class, 'store' ])->name('data.store');
+            });
+        });
+    });
 });

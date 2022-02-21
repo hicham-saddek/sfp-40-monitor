@@ -2,11 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\Role;
 use App\Models\Team;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Support\Str;
+use JetBrains\PhpStorm\ArrayShape;
 use Laravel\Jetstream\Features;
+use function intval;
+use function rand;
+use function random_int;
 
 class UserFactory extends Factory
 {
@@ -22,7 +29,8 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    #[ArrayShape(['name' => "string", 'email' => "string", 'email_verified_at' => "\Illuminate\Support\Carbon", 'password' => "string", 'remember_token' => "string"])]
+    public function definition(): array
     {
         return [
             'name' => $this->faker->name(),
@@ -36,9 +44,9 @@ class UserFactory extends Factory
     /**
      * Indicate that the model's email address should be unverified.
      *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     * @return \Database\Factories\UserFactory
      */
-    public function unverified()
+    public function unverified(): self
     {
         return $this->state(function (array $attributes) {
             return [
@@ -52,7 +60,7 @@ class UserFactory extends Factory
      *
      * @return $this
      */
-    public function withPersonalTeam()
+    public function withPersonalTeam(): self
     {
         if (! Features::hasTeamFeatures()) {
             return $this->state([]);

@@ -54,6 +54,8 @@ return [
     |
     */
 
+    'domain' => env('APP_DOMAIN', 'localhost'),
+
     'url' => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL', null),
@@ -179,6 +181,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
 
+        App\Providers\DatabaseServiceProvider::class,
     ],
 
     /*

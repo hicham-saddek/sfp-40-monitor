@@ -20,4 +20,18 @@ mix.js('resources/js/app.js', 'public/js').vue()
 
 if (mix.inProduction()) {
     mix.version();
+}else{
+    mix.browserSync({
+        proxy: "https://sfp40monitor.milebits.com:3005/",
+        port: 3005,
+        https: {
+            key: "/home/milebits/sfp40monitor.milebits.com/resources/certificates/ssl.key",
+            cert: "/home/milebits/sfp40monitor.milebits.com/resources/certificates/ssl.cert",
+        },
+        online: true,
+        open: true,
+        cors: true,
+        host: "sfp40monitor.milebits.com",
+        ui: false,
+    });
 }
