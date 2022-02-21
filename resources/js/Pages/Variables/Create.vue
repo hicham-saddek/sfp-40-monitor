@@ -15,9 +15,9 @@
                         <div class="mt-2 mb-8 text-sm text-gray-500">
                             Ajouter une variable à monitorer, le titre et la description sont des attributs qui vont
                             vous aider à identifier votre variable, elle représente un capteur ou un actionneur de votre
-                            système que vous souhaiter monitorer, l'index OPC_UA et le namespace OPC_UA représente votre
-                            capteur ou votre actionneur vous pouvez les collecter de la documentation de la plateforme
-                            disponible dans la documentation fournis avec la plateforme.
+                            système que vous souhaiter monitorer, 'Node ID' représente votre
+                            capteur ou votre actionneur vous pouvez voir de la documentation de la plateforme
+                            disponible pour plus de détails.
                         </div>
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -38,20 +38,11 @@
                                                    placeholder="Description"/>
                                         </div>
                                         <div class="m-2 py-2 flex">
-                                            <label for="opc_ua_namespace_index" class="text-sm appearance-none rounded-none border-none rounded-l-md px-3 py-2 border border-gray-300 bg-gray-200 text-gray-900">OPC-UA Namespace
-                                                Index</label>
-                                            <input id="opc_ua_namespace_index" name="opc_ua_namespace_index" v-model="form.opc_ua_namespace_index" type="text"
+                                            <label for="node_id" class="text-sm appearance-none rounded-none border-none rounded-l-md px-3 py-2 border border-gray-300 bg-gray-200 text-gray-900">Node ID</label>
+                                            <input id="node_id" name="node_id" v-model="form.node_id" type="text"
                                                    required=""
                                                    class="appearance-none rounded-none rounded-r-md w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                                   placeholder="OPC-UA Namespace
-                                                Index"/>
-                                        </div>
-                                        <div class="m-2 py-2 flex">
-                                            <label for="opc_ua_identifier" class="text-sm appearance-none rounded-none border-none rounded-l-md px-3 py-2 border border-gray-300 bg-gray-200 text-gray-900">OPC-UA Identifier</label>
-                                            <input id="opc_ua_identifier" name="opc_ua_identifier" v-model="form.opc_ua_identifier" type="text"
-                                                   required=""
-                                                   class="appearance-none rounded-none rounded-r-md w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                                   placeholder="OPC-UA Identifier"/>
+                                                   placeholder="Node ID (ns=;s=)"/>
                                         </div>
                                     </div>
                                     <div>
@@ -85,8 +76,7 @@ export default defineComponent({
             form: this.$inertia.form({
                 title: '',
                 description: '',
-                opc_ua_namespace_index: 0,
-                opc_ua_identifier: 0,
+                node_id: '',
             }),
         };
     },

@@ -14,11 +14,11 @@
                         <div class="mt-8 text-2xl">{{ variable.title }}</div>
                         <p class="mt-2 text-md">{{ variable.description }}</p>
                         <div class="mt-2 mb-8 text-sm text-gray-500">
-                            Une variable à monitorer, le titre et la description sont des attributs qui vont
+                            Ajouter une variable à monitorer, le titre et la description sont des attributs qui vont
                             vous aider à identifier votre variable, elle représente un capteur ou un actionneur de votre
-                            système que vous souhaiter monitorer, l'index OPC_UA et le namespace OPC_UA représente votre
-                            capteur ou votre actionneur vous pouvez les collecter de la documentation de la plateforme
-                            disponible dans la documentation fournis avec la plateforme.
+                            système que vous souhaiter monitorer, 'Node ID' représente votre
+                            capteur ou votre actionneur vous pouvez voir de la documentation de la plateforme
+                            disponible pour plus de détails.
                         </div>
                         <div class="-my-2sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -36,14 +36,8 @@
                                 </div>
                                 <div>
                                   <span class="left-0 text-sm text-gray-500">
-                                      <strong class="font-bold text-gray-700">Identifiant OPC-UA: </strong>
-                                      {{ variable.opc_ua_identifier }}
-                                  </span>
-                                </div>
-                                <div>
-                                  <span class="left-0 text-sm text-gray-500">
-                                      <strong class="font-bold text-gray-700">Indice du Namespace OPC-UA: </strong>
-                                      {{ variable.opc_ua_namespace_index }}
+                                      <strong class="font-bold text-gray-700">Node ID: </strong>
+                                      {{ variable.node_id }}
                                   </span>
                                 </div>
 
