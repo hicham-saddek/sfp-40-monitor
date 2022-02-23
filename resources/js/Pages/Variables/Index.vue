@@ -33,7 +33,7 @@
                                             class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Etat de l'abonnement
                                         </th>
-                                        <th scope="col" colspan="2"
+                                        <th scope="col" colspan="3"
                                             class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Actions
                                         </th>
@@ -61,25 +61,33 @@
                                                 }} </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <in-link :href="route('channels.variables.show', {variable: variable, channel: channel})"
-                                                     class="text-green-600 hover:text-green-900">Afficher
+                                            <in-link
+                                                :href="route('channels.variables.show', {variable: variable, channel: channel})"
+                                                class="text-green-600 hover:text-green-900">Afficher
                                             </in-link>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <in-link :href="route('channels.variables.edit', {variable: variable, channel: channel})"
-                                                     class="text-indigo-600 hover:text-indigo-900">Modifier
+                                            <button @click="toggleMonitoring(variable)"
+                                                    class="text-indigo-600 hover:text-indigo-900">
+                                                {{ variable.subscription_status ? "Désactiver" : "Activer" }}
+                                            </button>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <in-link
+                                                :href="route('channels.variables.edit', {variable: variable, channel: channel})"
+                                                class="text-indigo-600 hover:text-indigo-900">Modifier
                                             </in-link>
                                         </td>
                                     </tr>
                                     <tr v-if="pages.data.length <= 0">
-                                        <td class="px-6 py-4 whitespace-nowrap" colspan="4">
+                                        <td class="px-6 py-4 whitespace-nowrap" colspan="6">
                                             <div class="text-sm text-gray-900">Aucune variables, n'as été créer pour
                                                 l'instant, rajouter des variables afin de voir leurs avancements ici :).
                                             </div>
                                         </td>
                                     </tr>
                                     <tr class="bg-white border-t border-gray-200">
-                                        <td class="px-6 py-4 whitespace-nowrap" colspan="4">
+                                        <td class="px-6 py-4 whitespace-nowrap" colspan="6">
                                             <div class="flex-1 flex justify-between sm:hidden">
                                                 <in-link :href="pages.prev_page_url"
                                                          class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
@@ -93,19 +101,7 @@
                                             <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                                                 <div>
                                                     <p class="text-sm text-gray-700">
-                                                        Données de
-                                                        {{ ' ' }}
-                                                        <span class="font-medium">{{ pages.from }}</span>
-                                                        {{ ' ' }}
-                                                        à
-                                                        {{ ' ' }}
-                                                        <span class="font-medium">{{ pages.to }}</span>
-                                                        {{ ' ' }}
-                                                        de
-                                                        {{ ' ' }}
-                                                        <span class="font-medium">{{ pages.total }}</span>
-                                                        {{ ' ' }}
-                                                        résultats
+                                                        Données de {{ pages.from }} à {{ pages.to }} pour {{ pages.total }} données.
                                                     </p>
                                                 </div>
                                                 <div>
@@ -180,7 +176,14 @@ export default defineComponent({
         },
         isNext(label) {
             return label.toString().startsWith('Next');
-        }
+        },
+        toggleMonitoring(variable) {
+            let route = this.route('channels.variables.toggleWatch', {channel: this.channel.id, variable: variable.id});
+            this.$inertia.visit(route, {
+                method: 'post',
+                replace: true,
+            });
+        },
     },
 });
 </script>

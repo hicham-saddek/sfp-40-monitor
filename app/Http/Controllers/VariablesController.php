@@ -15,7 +15,7 @@ class VariablesController extends Controller
     public function index(Channel $channel)
     {
         return inertia('Variables/Index')->with([
-            'pages' => Variable::query()->paginate(),
+            'pages' => $channel->variables()->paginate(),
             'channel' => $channel,
         ]);
     }
@@ -28,15 +28,15 @@ class VariablesController extends Controller
     public function store(Request $request, Channel $channel)
     {
         $data = $request->validate([
-            'title' => ['required', 'string', 'min:5', 'max:191'],
-            'description' => ['required', 'string'],
-            'node_id' => ['required', 'string'],
-            'subscriptions_status' => ['required', 'boolean'],
+            'title' => [ 'required', 'string', 'min:5', 'max:191' ],
+            'description' => [ 'required', 'string' ],
+            'node_id' => [ 'required', 'string' ],
+            'subscriptions_status' => [ 'nullable', 'boolean' ],
         ]);
-        $variable = $channel->variables()->create($data);
+        $variable = $channel->variables()->create(collect($data)->whereNotNull()->toArray());
         if (!is_null($variable))
-            return $this->success(['created' => true, 'variable' => $variable]);
-        return $this->failure(['created' => false, 'variable' => $variable]);
+            return $this->success([ 'created' => true, 'variable' => $variable ]);
+        return $this->failure([ 'created' => false, 'variable' => $variable ]);
     }
 
     public function show(Channel $channel, Variable $variable)
@@ -52,10 +52,10 @@ class VariablesController extends Controller
     public function update(Request $request, Channel $channel, Variable $variable)
     {
         $data = $request->validate([
-            'title' => ['nullable', 'string', 'min:5', 'max:191'],
-            'description' => ['nullable', 'string'],
-            'node_id' => ['nullable', 'string'],
-            'subscriptions_status' => ['nullable', 'boolean'],
+            'title' => [ 'nullable', 'string', 'min:5', 'max:191' ],
+            'description' => [ 'nullable', 'string' ],
+            'node_id' => [ 'nullable', 'string' ],
+            'subscriptions_status' => [ 'nullable', 'boolean' ],
         ]);
         $data = collect($data)->whereNotNull()->toArray();
         $updated = $variable->update($data);
@@ -84,5 +84,12 @@ class VariablesController extends Controller
     {
         $subscription = $variable->toggleSubscription();
         return $this->success(compact('subscription', 'channel', 'variable'));
+    }
+
+    public function toggleWatch(Channel $channel, Variable $variable)
+    {
+        if ($updated = $variable->toggleSubscription() == true)
+            return $this->success(compact([ 'channel', 'variable', 'updated' ]));
+        return $this->failure();
     }
 }

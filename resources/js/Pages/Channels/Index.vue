@@ -89,7 +89,7 @@
                                             </in-link>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <button :href="route('channels.edit', {channel: channel.id})" @click="toggleMonitoring(channel.id)"
+                                            <button @click="toggleMonitoring(channel.id)"
                                                      class="text-indigo-600 hover:text-indigo-900">{{ channel.active ? "Désactiver" : "Activer" }}
                                             </button>
                                         </td>

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewDataEntryEvent;
 use App\Models\Channel;
 use App\Models\Data;
 use App\Models\Variable;
 use Illuminate\Http\Request;
+use Pusher\Pusher;
+use function broadcast;
 use function compact;
+use function event;
 
 class DataController extends Controller
 {
@@ -25,14 +29,16 @@ class DataController extends Controller
             'collected_at' => [ 'required', 'date' ],
         ]);
         $data = $variable->data()->create($data);
-        if (!is_null($data))
+        if (!is_null($data)) {
+            broadcast(new NewDataEntryEvent($data));
             return $this->success(compact([ 'channel', 'variable', 'data' ]));
+        }
         return $this->failure(compact([ 'channel', 'variable' ]));
     }
 
     public function show(Request $request, Data $data)
     {
-        if($request->wantsJson()){
+        if ($request->wantsJson()) {
             return $this->success(compact('data'));
         }
         return inertia('Data/Show')->with(compact('data'));

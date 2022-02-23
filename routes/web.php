@@ -1,17 +1,17 @@
 <?php
 
 use App\Http\Controllers\ChannelsController;
-use App\Http\Controllers\DataController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\VariablesController;
+use App\Http\Controllers\VisualisationsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ PagesController::class, 'welcome' ])->name('home');
 
-Route::middleware([ 'auth:sanctum', 'verified' ])->group(function () {
+Route::prefix('')->group(function () {
     Route::get('/dashboard', [ PagesController::class, 'dashboard' ])->name('dashboard');
-    Route::get('/about', [ PagesController::class, 'about' ])->name('about');
-    Route::get('/details', [ PagesController::class, 'details' ])->name('details');
+    Route::get('history', [ VisualisationsController::class, 'historyIndex' ])->name('history');
+    Route::get('realtime', [ VisualisationsController::class, 'realtimeIndex' ])->name('realtime');
     Route::name('channels.')->prefix('channels')->group(function () {
         Route::get('/', [ ChannelsController::class, 'index' ])->name('index');
         Route::post('/', [ ChannelsController::class, 'store' ])->name('store');
@@ -23,6 +23,7 @@ Route::middleware([ 'auth:sanctum', 'verified' ])->group(function () {
             Route::get('/edit', [ ChannelsController::class, 'edit' ])->name('edit');
             Route::patch('/toggleMonitoring', [ ChannelsController::class, 'toggleMonitoring' ])->name('toggleMonitoring');
             Route::name('variables.')->prefix('variables')->group(function () {
+                Route::get('/all', [ ChannelsController::class, 'fetchAll' ])->name('all-variables');
                 Route::get('/watched', [ ChannelsController::class, 'watched' ])->name('watched');
                 Route::get('/unwatched', [ ChannelsController::class, 'unwatched' ])->name('unwatched');
                 Route::get('/', [ VariablesController::class, 'index' ])->name('index');
@@ -32,16 +33,10 @@ Route::middleware([ 'auth:sanctum', 'verified' ])->group(function () {
                 Route::patch('/{variable}', [ VariablesController::class, 'update' ])->name('update');
                 Route::delete('/{variable}', [ VariablesController::class, 'destroy' ])->name('delete');
                 Route::get('/{variable}/edit', [ VariablesController::class, 'edit' ])->name('edit');
+                Route::post('/{variable}/toggleWatch', [ VariablesController::class, 'toggleWatch' ])->name('toggleWatch');
                 Route::name('data.')->prefix('{variable}/data')->group(function () {
-                    Route::get('/', [ DataController::class, 'index' ])->name('index');
-                    Route::get('/{data}', [ DataController::class, 'show' ])->name('show');
-                    Route::post('/', [ DataController::class, 'store' ])->name('store');
-                    Route::get('/create', [ DataController::class, 'create' ])->name('create');
-                    Route::get('/{data}/edit', [ DataController::class, 'edit' ])->name('edit');
-                    Route::patch('/{data}', [ DataController::class, 'update' ])->name('update');
-                    Route::delete('/{data}', [ DataController::class, 'destroy' ])->name('delete');
-                    Route::get('/realtime', [ DataController::class, 'realtime' ])->name('realtime');
-                    Route::get('history', [ DataController::class, 'history' ])->name('history');
+                    Route::get('fetchHistory', [ VisualisationsController::class, 'history' ])->name('fetchHistory');
+                    Route::get('fetchRealtime', [ VisualisationsController::class, 'realtime' ])->name('fetchRealtime');
                 });
             });
         });

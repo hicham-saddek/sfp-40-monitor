@@ -1,9 +1,9 @@
 <template>
-    <in-head title="Créer un nouveau canal de données"/>
+    <in-head title="Modification d'un canal de données"/>
     <app-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Création d'un nouveau canal de données
+                Modification d'un canal de données
             </h2>
         </template>
         <div class="py-12">
@@ -11,7 +11,7 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div
                         class="p-6 sm:px-20 bg-white border-b border-gray-200 text-center flex justify-center flex-col">
-                        <div class="mt-8 text-2xl">Créer un nouveau canal de données</div>
+                        <div class="mt-8 text-2xl">Modification d'un canal de données</div>
                         <div class="mt-2 mb-8 text-sm text-gray-500">
                             Ajouter un nouveau canal de données, le titre et la description sont des attributs qui vont vous aider à identifier votre canal,
                             ce canal représentera l'interface <strong>SFP4.0Collector</strong> que vous pouvez installer sur chaque poste de votre système.

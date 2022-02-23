@@ -25,6 +25,12 @@
                                 <jet-nav-link :href="route('channels.index')" :active="route().current('channels.index')">
                                     Canaux
                                 </jet-nav-link>
+                                <jet-nav-link :href="route('history')" :active="route().current('history')">
+                                    Visualisation historique
+                                </jet-nav-link>
+                                <jet-nav-link :href="route('realtime')" :active="route().current('realtime')">
+                                    Visualisation temps réel
+                                </jet-nav-link>
                             </div>
                         </div>
 
@@ -91,6 +97,12 @@
                         </jet-responsive-nav-link>
                         <jet-responsive-nav-link :href="route('channels.index')" :active="route().current('channels.index')">
                             Canaux
+                        </jet-responsive-nav-link>
+                        <jet-responsive-nav-link :href="route('history')" :active="route().current('history')">
+                            Visualisation historique
+                        </jet-responsive-nav-link>
+                        <jet-responsive-nav-link :href="route('realtime')" :active="route().current('realtime')">
+                            Visualisation temps réel
                         </jet-responsive-nav-link>
                     </div>
 

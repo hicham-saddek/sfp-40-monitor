@@ -14,12 +14,12 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function success($data, $to = null)
+    public function success($data, $to = null, bool $wrap = true)
     {
-        $data = [
+        $data = $wrap ? [
             'status' => 'success',
             'data' => $data,
-        ];
+        ] : $data;
         if (request()->wantsJson()) return response()->json($data);
         if (!is_null($to)) return redirect($to)->with($data);
         return back()->with($data);

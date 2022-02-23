@@ -59,9 +59,8 @@ class ChannelsController extends Controller
     public function update(Request $request, Channel $channel)
     {
         $channelData = collect($request->validate([
-            'title' => [ 'nullable', 'string', 'min:2', 'max:191' ],
+            'title' => [ 'nullable', 'string' ],
             'description' => [ 'nullable', 'string' ],
-            'active' => [ 'nullable', 'boolean' ],
             'opc' => [ 'nullable', 'string' ],
             'clock' => [ 'nullable', 'integer' ],
             '3d_x' => [ 'nullable', 'numeric' ],
@@ -88,6 +87,12 @@ class ChannelsController extends Controller
     {
         $unwatched = $channel->subscriptions(false)->get();
         return $this->success(compact('channel', 'unwatched'));
+    }
+
+    public function fetchAll(Channel $channel)
+    {
+        $variables = $channel->variables()->get();
+        return $this->success(compact('variables'), wrap: false);
     }
 
     public function configs(Channel $channel)

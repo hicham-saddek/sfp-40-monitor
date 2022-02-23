@@ -16,10 +16,10 @@ mix.js('resources/js/app.js', 'public/js').vue()
         require('postcss-import'),
         require('tailwindcss'),
     ])
-    .webpackConfig(require('./webpack.config'));
+    .webpackConfig(require('./webpack.config')).sourceMaps(mix.inProduction());
 
 if (mix.inProduction()) {
-    mix.version();
+    mix.version().minify('public/js/app.js', 'public/js/app.min.js');
 }else{
     mix.browserSync({
         proxy: "https://sfp40monitor.milebits.com:3005/",

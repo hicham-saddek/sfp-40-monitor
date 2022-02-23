@@ -16,7 +16,7 @@ use Milebits\Eloquent\Filters\Concerns\TitleField;
 /**
  *   Variable class
  *
- * @property Channel $channel
+ * @property Channel                 $channel
  * @property Collection|Data[]|array $data
  * @method static create(mixed[] $attributes)
  */
@@ -41,31 +41,34 @@ class Variable extends Model
 
     public function subscribe(): bool
     {
-        return $this->update(['subscription_state' => true]);
+        return $this->subscriptionStatus(true);
+    }
+
+    public function subscriptionStatus(bool $value = null): bool
+    {
+        if (is_null($value))
+            return $this->subscription_status;
+        $this->subscription_status = $value;
+        return $this->save();
     }
 
     public function unsubscribe(): bool
     {
-        return $this->update(['subscription_state' => false]);
+        return $this->subscriptionStatus(false);
     }
 
     public function toggleSubscription(): bool
     {
-        return $this->update(['subscription_state' => ! $this->subscriptionStatus()]);
+        return $this->subscriptionStatus(!$this->subscriptionStatus());
+    }
+
+    #[Pure] public function isNotSubscribedTo(): bool
+    {
+        return !$this->isSubscribedTo();
     }
 
     #[Pure] public function isSubscribedTo(): bool
     {
         return $this->subscriptionStatus();
-    }
-
-    #[Pure] public function isNotSubscribedTo(): bool
-    {
-        return ! $this->isSubscribedTo();
-    }
-
-    public function subscriptionStatus(): bool
-    {
-        return $this->subscription_status;
     }
 }

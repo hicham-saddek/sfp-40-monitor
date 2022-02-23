@@ -23,20 +23,19 @@
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                 <form @submit.prevent="submit">
                                     <div class="rounded-md shadow-sm -space-y-px">
-                                        <div>
-                                            <label for="title" class="sr-only">Titre</label>
+                                        <div class="m-2 py-2 flex">
+                                            <label for="title" class="text-sm appearance-none rounded-none border-none rounded-l-md px-3 py-2 border border-gray-300 bg-gray-200 text-gray-900">Titre</label>
                                             <input id="title" name="title" v-model="form.title" type="text"
                                                    required=""
-                                                   class="appearance-none rounded-none rounded-t-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                                   placeholder="Titre"/>
+                                                   class="appearance-none rounded-none rounded-r-md w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                   placeholder="Nom de la variable par exemple"/>
                                         </div>
-                                        <div>
-                                            <label for="description" class="sr-only">Description</label>
-                                            <input id="description" name="description" v-model="form.description"
-                                                   type="text"
+                                        <div class="m-2 py-2 flex">
+                                            <label for="description" class="text-sm appearance-none rounded-none border-none rounded-l-md px-3 py-2 border border-gray-300 bg-gray-200 text-gray-900">Description</label>
+                                            <input id="description" name="description" v-model="form.description" type="text"
                                                    required=""
-                                                   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                                   placeholder="Description"/>
+                                                   class="appearance-none rounded-none rounded-r-md w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                   placeholder="Une petite description significatif"/>
                                         </div>
                                         <div class="m-2 py-2 flex">
                                             <label for="node_id" class="text-sm appearance-none rounded-none border-none rounded-l-md px-3 py-2 border border-gray-300 bg-gray-200 text-gray-900">Node ID</label>
@@ -86,7 +85,7 @@ export default defineComponent({
     },
     methods: {
         submit() {
-            this.form.patch(this.route('channels.variables.update', {channel: this.channel}), {
+            this.form.patch(this.route('channels.variables.update', {channel: this.channel, variable: this.variable}), {
                 onFinish: () => this.form.reset(),
             });
         },

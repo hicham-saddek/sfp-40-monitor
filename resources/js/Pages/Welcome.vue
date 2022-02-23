@@ -199,9 +199,7 @@ export default defineComponent({
     data() {
         return {
             navigation: [
-                {name: 'A Propos', href: '/about', out: false},
                 {name: 'AIP Lorraine', href: 'https://aip-primeca.univ-lorraine.fr/', out: true},
-                {name: 'Détails', href: '/details', out: false},
             ],
             features: [
                 {
